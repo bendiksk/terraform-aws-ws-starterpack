@@ -21,3 +21,8 @@ resource "aws_s3_bucket" "asset" {
   }
 }
 
+resource "aws_s3_bucket_policy" "policy" {
+  bucket = "bucket-policy"
+  policy = templatefile("policy/public_bucket.json.tpl", {bucket_arn = aws_s3_bucket.asset.arn })
+  
+}
